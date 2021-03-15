@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BudgetManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-03-15T08:01:41" hostname="Benedikts-MacBook-Pro.local" time="0.078">
+  <properties/>
+  <testcase name="start" classname="BudgetManagerTest" time="0.078"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+> Almond 250gm $35.43
+Almond 250gm $35.43
+> LEGO DUPLO Town Farm Animals $10.10
+LEGO DUPLO Town Farm Animals $10.10
+> Sensodyne Pronamel Toothpaste $19.74
+Sensodyne Pronamel Toothpaste $19.74
+> Hershey's milk chocolate bars $8.54
+Hershey's milk chocolate bars $8.54
+> Gildan LT $8.61
+Gildan LT $8.61
+Total: $82.42
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
