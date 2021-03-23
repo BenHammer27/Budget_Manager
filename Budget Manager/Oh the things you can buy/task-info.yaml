@@ -303,6 +303,24 @@ files:
         }
     }
   learner_created: false
+- name: src/budget/Purchase.java
+  visible: true
+  text: |
+    package budget;
+
+    public class Purchase {
+        String name;
+        Double price;
+
+        Purchase() {
+        }
+
+        Purchase (String name, Double price) {
+            this.name = name;
+            this.price = price;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/76/stages/423/implement#comment
 status: Unchecked
 record: -1
