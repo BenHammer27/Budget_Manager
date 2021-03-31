@@ -31,14 +31,44 @@ public class Main {
                     System.out.println("Income was added!");
                     break;
                 case 2:
-                    System.out.println("\nEnter purchase name:");
-                    String empty = scanner.nextLine();
-                    String name = scanner.nextLine();
-                    System.out.println("Enter its price:");
-                    Double price = scanner.nextDouble();
-                    balance -= price;
-                    purchases.add(new Purchase(name, price));
-                    System.out.println("Purchase was added!");
+                    boolean back = false;
+                    do {
+                        System.out.println("\nChose the type of purchase");
+                        System.out.println("1) Food");
+                        System.out.println("2) Clothes");
+                        System.out.println("3) Entertainment");
+                        System.out.println("4) Other");
+                        System.out.println("5) Back");
+                        int typeChoice = scanner.nextInt();
+                        String type = "";
+
+                        switch (typeChoice){
+                            case 1:
+                                type = "Food";
+                                break;
+                            case 2:
+                                type = "Clothes";
+                                break;
+                            case 3:
+                                type = "Entertainment";
+                                break;
+                            case 4:
+                                type = "Other";
+                                break;
+                            case 5:
+                                back = true;
+                                break;
+                        }
+
+                        System.out.println("\nEnter purchase name:");
+                        String empty = scanner.nextLine();
+                        String name = scanner.nextLine();
+                        System.out.println("Enter its price:");
+                        Double price = scanner.nextDouble();
+                        balance -= price;
+                        purchases.add(new Purchase(name, price, type));
+                        System.out.println("Purchase was added!");
+                    } while (!back);
                     break;
                 case 3:
                     Double total = 0.00;
