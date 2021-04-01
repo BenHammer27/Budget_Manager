@@ -32,7 +32,7 @@ public class Main {
                     break;
                 case 2:
                     boolean back = false;
-                    do {
+                    while(!back) {
                         System.out.println("\nChose the type of purchase");
                         System.out.println("1) Food");
                         System.out.println("2) Clothes");
@@ -59,29 +59,121 @@ public class Main {
                                 back = true;
                                 break;
                         }
-
-                        System.out.println("\nEnter purchase name:");
-                        String empty = scanner.nextLine();
-                        String name = scanner.nextLine();
-                        System.out.println("Enter its price:");
-                        Double price = scanner.nextDouble();
-                        balance -= price;
-                        purchases.add(new Purchase(name, price, type));
-                        System.out.println("Purchase was added!");
-                    } while (!back);
+                        if (!back) {
+                            System.out.println("\nEnter purchase name:");
+                            String empty = scanner.nextLine();
+                            String name = scanner.nextLine();
+                            System.out.println("Enter its price:");
+                            Double price = scanner.nextDouble();
+                            balance -= price;
+                            purchases.add(new Purchase(name, price, type));
+                            System.out.println("Purchase was added!");
+                        }
+                    }
                     break;
                 case 3:
                     Double total = 0.00;
-                    if (purchases.size() == 0) {
-                        System.out.println("\nThe purchase list ist empty");
-                    } else {
-                        System.out.print("\n");
-                        for (int i = 0; i < purchases.size(); i++) {
-                            System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
-                            total += purchases.get(i).price;
+                    boolean backList = false;
+                    while(!backList) {
+                        System.out.println("\nChose the type of purchase");
+                        System.out.println("1) Food");
+                        System.out.println("2) Clothes");
+                        System.out.println("3) Entertainment");
+                        System.out.println("4) Other");
+                        System.out.println("5) Back");
+                        int typeChoice = scanner.nextInt();
+                        String type = "";
+
+                        switch (typeChoice) {
+                            case 1:
+                                Double totalFood = 0.00;
+                                type = "Food";
+                                System.out.print("\n");
+                                for (int i = 0; i < purchases.size(); i++) {
+                                    if(purchases.get(i).type.equals(type)) {
+                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        totalFood += purchases.get(i).price;
+                                    }
+                                }
+                                if (totalFood == 0) {
+                                    System.out.println("\nThe purchase list ist empty");
+                                } else {
+                                    System.out.println("Total sum: $" + format.format(totalFood));
+                                }
+                                break;
+                            case 2:
+                                Double totalClothes = 0.00;
+                                type = "Clothes";
+                                System.out.print("\n");
+                                for (int i = 0; i < purchases.size(); i++) {
+                                    if(purchases.get(i).type.equals(type)) {
+                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        totalClothes += purchases.get(i).price;
+                                    }
+                                }
+                                if (totalClothes == 0) {
+                                    System.out.println("\nThe purchase list ist empty");
+                                } else {
+                                    System.out.println("Total sum: $" + format.format(totalClothes));
+                                }
+                                break;
+                            case 3:
+                                Double totalEntertainment = 0.00;
+                                type = "Entertainment";
+                                System.out.print("\n");
+                                for (int i = 0; i < purchases.size(); i++) {
+                                    if(purchases.get(i).type.equals(type)) {
+                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        totalEntertainment += purchases.get(i).price;
+                                    }
+                                }
+                                if (totalEntertainment == 0) {
+                                    System.out.println("\nThe purchase list ist empty");
+                                } else {
+                                    System.out.println("Total sum: $" + format.format(totalEntertainment));
+                                }
+                                break;
+                            case 4:
+                                Double totalOther = 0.00;
+                                type = "Other";
+                                System.out.print("\n");
+                                for (int i = 0; i < purchases.size(); i++) {
+                                    if(purchases.get(i).type.equals(type)) {
+                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        totalOther += purchases.get(i).price;
+                                    }
+                                }
+                                if (totalOther == 0) {
+                                    System.out.println("\nThe purchase list ist empty");
+                                } else {
+                                    System.out.println("Total sum: $" + format.format(totalOther));
+                                }
+                                break;
+                            case 5:
+                                System.out.print("\nAll:");
+                                for (int i = 0; i < purchases.size(); i++) {
+                                    System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                    total += purchases.get(i).price;
+                                }
+                                System.out.println("Total sum: $" + format.format(total));
+                            case 6:
+                                backList = true;
+                                break;
                         }
-                        System.out.println("Total sum: $" + format.format(total));
                     }
+
+                    /*if(!backList) {
+                        if (purchases.size() == 0) {
+                            System.out.println("\nThe purchase list ist empty");
+                        } else {
+                            System.out.print("\n");
+                            for (int i = 0; i < purchases.size(); i++) {
+                                System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                total += purchases.get(i).price;
+                            }
+                            System.out.println("Total sum: $" + format.format(total));
+                        }
+                    }*/
                     break;
                 case 4:
                     if (balance < 0) {
