@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Budget Manager/task" />
             <option value="$PROJECT_DIR$/Problems/Backward indexes" />
+            <option value="$PROJECT_DIR$/Problems/Blacklist" />
             <option value="$PROJECT_DIR$/Problems/Calculate Square" />
             <option value="$PROJECT_DIR$/Problems/Change identities" />
             <option value="$PROJECT_DIR$/Problems/Companies" />
@@ -23,6 +24,7 @@
             <option value="$PROJECT_DIR$/Problems/Find the nearest number" />
             <option value="$PROJECT_DIR$/Problems/Getting submaps" />
             <option value="$PROJECT_DIR$/Problems/Initialize an object of a generic class" />
+            <option value="$PROJECT_DIR$/Problems/Modifying a map" />
             <option value="$PROJECT_DIR$/Problems/Next even number" />
             <option value="$PROJECT_DIR$/Problems/Output elements" />
             <option value="$PROJECT_DIR$/Problems/Output the list's elements" />
@@ -30,6 +32,8 @@
             <option value="$PROJECT_DIR$/Problems/Removing duplicates and sorting" />
             <option value="$PROJECT_DIR$/Problems/Sherlock Holmes and removing of characters" />
             <option value="$PROJECT_DIR$/Problems/Sherlock Holmes and the mystery of anagrams" />
+            <option value="$PROJECT_DIR$/Problems/Spell checker" />
+            <option value="$PROJECT_DIR$/Problems/Split a list into sublists" />
             <option value="$PROJECT_DIR$/Problems/Squares list" />
             <option value="$PROJECT_DIR$/Problems/Strict superset" />
             <option value="$PROJECT_DIR$/Problems/The longest string in the list" />

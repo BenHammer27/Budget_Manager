@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="BudgetManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-03-22T13:56:28" hostname="Benedikts-MBP.mshome.net" time="0.186">
+<testsuite name="BudgetManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-01T10:03:01" hostname="Benedikts-MBP" time="0.206">
   <properties/>
-  <testcase name="start" classname="BudgetManagerTest" time="0.186"/>
+  <testcase name="start" classname="BudgetManagerTest" time="0.206"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -113,16 +113,6 @@ Choose your action:
 3) Show list of purchases
 4) Balance
 0) Exit
-> 3
-
-The purchase list ist empty
-
-Choose your action:
-1) Add Income
-2) Add purchase
-3) Show list of purchases
-4) Balance
-0) Exit
 > 1
 
 Enter income:
@@ -137,25 +127,55 @@ Choose your action:
 0) Exit
 > 2
 
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 1
+
 Enter purchase name:
-> Red Fuji Apple
+> Milk
 Enter its price:
-> 5.99
+> 3.5
 Purchase was added!
 
-Choose your action:
-1) Add Income
-2) Add purchase
-3) Show list of purchases
-4) Balance
-0) Exit
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
 > 2
 
 Enter purchase name:
-> Eggs
+> Men's Dual Defense Crew Socks 12 Pairs
 Enter its price:
-> 3.99
+> 13
 Purchase was added!
+
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 3
+
+Enter purchase name:
+> Cinema
+Enter its price:
+> 8.73
+Purchase was added!
+
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 5
 
 Choose your action:
 1) Add Income
@@ -165,9 +185,51 @@ Choose your action:
 0) Exit
 > 3
 
-Red Fuji Apple $5.99
-Eggs $3.99
-Total sum: $9.98
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 1
+
+Milk $3.50
+Total sum: $3.50
+
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 2
+
+Men's Dual Defense Crew Socks 12 Pairs $13.00
+Total sum: $13.00
+
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 3
+
+Cinema $8.73
+Total sum: $8.73
+
+Chose the type of purchase
+1) Food
+2) Clothes
+3) Entertainment
+4) Other
+5) Back
+> 5
+
+All:Milk $3.50
+Men's Dual Defense Crew Socks 12 Pairs $13.00
+Cinema $8.73
+Total sum: $25.23
 
 Choose your action:
 1) Add Income
@@ -175,9 +237,7 @@ Choose your action:
 3) Show list of purchases
 4) Balance
 0) Exit
-> 4
-
-Balance: $590.02
+> 6
 
 Choose your action:
 1) Add Income
