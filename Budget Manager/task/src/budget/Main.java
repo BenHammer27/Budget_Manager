@@ -1,4 +1,6 @@
 package budget;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.DecimalFormat;
@@ -10,6 +12,7 @@ public class Main {
         boolean exit = false;
         DecimalFormat format = new DecimalFormat("0.00");
         ArrayList<Purchase> purchases = new ArrayList<>();
+        File file = new File("purchase.txt");
 
         do {
             System.out.println("\nChoose your action:");
@@ -17,6 +20,8 @@ public class Main {
             System.out.println("2) Add purchase");
             System.out.println("3) Show list of purchases");
             System.out.println("4) Balance");
+            System.out.println("5) Save");
+            System.out.println("6) Load");
             System.out.println("0) Exit");
 
             int choice = scanner.nextInt();
@@ -181,6 +186,17 @@ public class Main {
                     }
                     System.out.println("\nBalance: $" + format.format(balance));
                     break;
+                case 5:
+                    // File erstellen, wenn diese noch nicht besteht
+                    // Für jedes Element in der Liste diese mit name, price und type in die Datei schreiben.
+                    System.out.println("Purchases were saved!");
+                case 6:
+                    try (Scanner fileScanner = new Scanner(file)){
+                        // Für jedes Element aus der Datei dieses Elemente mit name, price und type in in die Liste übernehmen
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File not found");
+                    }
+                    System.out.println("Purchases were loaded!");
             }
         } while (!exit);
 

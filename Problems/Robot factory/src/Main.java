@@ -20,7 +20,6 @@ abstract class Robot {
 enum RobotType {
     ROBOT_CLEANER,
     ROBOT_GUARDIAN,
-    /**  write your code here ... */
 }
 
 /** Concrete Product - Robot Cleaner */
@@ -93,7 +92,6 @@ class RobotFactory {
         } else {
             return new RobotGuardian(name, description, power);
         }
-        /**  write your code here ... */
     }
 }
 
