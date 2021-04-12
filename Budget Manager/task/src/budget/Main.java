@@ -1,6 +1,8 @@
 package budget;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.DecimalFormat;
@@ -12,7 +14,7 @@ public class Main {
         boolean exit = false;
         DecimalFormat format = new DecimalFormat("0.00");
         ArrayList<Purchase> purchases = new ArrayList<>();
-        File file = new File("purchase.txt");
+        File file = new File("purchases.txt");
 
         do {
             System.out.println("\nChoose your action:");
@@ -85,7 +87,8 @@ public class Main {
                         System.out.println("2) Clothes");
                         System.out.println("3) Entertainment");
                         System.out.println("4) Other");
-                        System.out.println("5) Back");
+                        System.out.println("5) All");
+                        System.out.println("6) Back");
                         int typeChoice = scanner.nextInt();
                         String type = "";
 
@@ -93,74 +96,91 @@ public class Main {
                             case 1:
                                 Double totalFood = 0.00;
                                 type = "Food";
-                                System.out.print("\n");
                                 for (int i = 0; i < purchases.size(); i++) {
-                                    if(purchases.get(i).type.equals(type)) {
-                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                    if (purchases.get(i).type.equals(type)) {
                                         totalFood += purchases.get(i).price;
                                     }
                                 }
                                 if (totalFood == 0) {
                                     System.out.println("\nThe purchase list ist empty");
                                 } else {
+                                    System.out.print("\nFood:\n");
+                                    for (int i = 0; i < purchases.size(); i++) {
+                                        if (purchases.get(i).type.equals(type)) {
+                                            System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        }
+                                    }
                                     System.out.println("Total sum: $" + format.format(totalFood));
                                 }
                                 break;
                             case 2:
                                 Double totalClothes = 0.00;
                                 type = "Clothes";
-                                System.out.print("\n");
                                 for (int i = 0; i < purchases.size(); i++) {
                                     if(purchases.get(i).type.equals(type)) {
-                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
                                         totalClothes += purchases.get(i).price;
                                     }
                                 }
                                 if (totalClothes == 0) {
                                     System.out.println("\nThe purchase list ist empty");
                                 } else {
+                                    System.out.print("\nClothes:\n");
+                                    for (int i = 0; i < purchases.size(); i++) {
+                                        if(purchases.get(i).type.equals(type)) {
+                                            System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        }
+                                    }
                                     System.out.println("Total sum: $" + format.format(totalClothes));
                                 }
                                 break;
                             case 3:
                                 Double totalEntertainment = 0.00;
                                 type = "Entertainment";
-                                System.out.print("\n");
                                 for (int i = 0; i < purchases.size(); i++) {
                                     if(purchases.get(i).type.equals(type)) {
-                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
                                         totalEntertainment += purchases.get(i).price;
                                     }
                                 }
                                 if (totalEntertainment == 0) {
                                     System.out.println("\nThe purchase list ist empty");
                                 } else {
+                                    System.out.print("\nEntertainment\n");
+                                    for (int i = 0; i < purchases.size(); i++) {
+                                        if (purchases.get(i).type.equals(type)) {
+                                            System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        }
+                                    }
                                     System.out.println("Total sum: $" + format.format(totalEntertainment));
                                 }
                                 break;
                             case 4:
                                 Double totalOther = 0.00;
                                 type = "Other";
-                                System.out.print("\n");
                                 for (int i = 0; i < purchases.size(); i++) {
                                     if(purchases.get(i).type.equals(type)) {
-                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
                                         totalOther += purchases.get(i).price;
                                     }
                                 }
                                 if (totalOther == 0) {
                                     System.out.println("\nThe purchase list ist empty");
                                 } else {
+                                    System.out.print("\nOther:\n");
+                                    for (int i = 0; i < purchases.size(); i++) {
+                                        if(purchases.get(i).type.equals(type)) {
+                                            System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                        }
+                                    }
                                     System.out.println("Total sum: $" + format.format(totalOther));
                                 }
                                 break;
                             case 5:
-                                System.out.print("\nAll:");
+                                System.out.print("\nAll:\n");
                                 for (int i = 0; i < purchases.size(); i++) {
                                     System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
                                     total += purchases.get(i).price;
                                 }
                                 System.out.println("Total sum: $" + format.format(total));
+                                break;
                             case 6:
                                 backList = true;
                                 break;
@@ -187,16 +207,28 @@ public class Main {
                     System.out.println("\nBalance: $" + format.format(balance));
                     break;
                 case 5:
-                    // File erstellen, wenn diese noch nicht besteht
-                    // Für jedes Element in der Liste diese mit name, price und type in die Datei schreiben.
+                    try (FileWriter writer = new FileWriter(file)) {
+                        writer.write("Balance: " + balance +"\n");
+                        for (Purchase p : purchases) {
+                            writer.write(p.name + "/" + p.price + "/" + p.type +"\n");
+                        }
+                    } catch (IOException e) {
+                        System.out.printf("An exception occurs %s", e.getMessage());
+                    }
                     System.out.println("Purchases were saved!");
+                    break;
                 case 6:
                     try (Scanner fileScanner = new Scanner(file)){
-                        // Für jedes Element aus der Datei dieses Elemente mit name, price und type in in die Liste übernehmen
+                        String[] balanceFile = fileScanner.nextLine().split(" ");
+                        balance = Double.parseDouble(balanceFile[1]);
+                        while(fileScanner.hasNext()) {
+                            String[] next = fileScanner.nextLine().split("/");
+                            purchases.add(new Purchase(next[0], Double.parseDouble(next[1]), next[2]));
+                        }
+                        System.out.println("\nPurchases were loaded!");
                     } catch (FileNotFoundException e) {
-                        System.out.println("File not found");
+                        System.out.println("\nFile not found");
                     }
-                    System.out.println("Purchases were loaded!");
             }
         } while (!exit);
 
