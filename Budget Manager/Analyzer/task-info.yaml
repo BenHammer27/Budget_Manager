@@ -402,6 +402,48 @@ files:
         }
     }
   learner_created: false
+- name: purchases.txt
+  visible: true
+  text: |
+    Balance: 785.64
+    Almond 250g/35.43/Food
+    Milk/3.5/Food
+    Red Fuji Apple/5.99/Food
+    Eggs/3.99/Food
+    FIJI Natural Artesian Water/25.98/Food
+    Hershey's milk chocolate bars/8.54/Food
+    Great Value Broccoli Florets/1.0/Food
+    Keystone Ground Bee/6.28/Food
+    Gildan LT/8.61/Clothes
+    Men's Dual Defense Crew Socks 12 Pairs/13.0/Clothes
+    Wrangler Men's Stretch Cargo Pant/19.97/Clothes
+    LEGO DUPLO Town Farm Animals/10.1/Entertainment
+    Cinema/8.73/Entertainment
+    Skate rental/30.0/Entertainment
+    Sensodyne Pronamel Toothpaste/19.74/Other
+    Chick-fil-A $10 Gift Card/10.0/Other
+    Debt/3.5/Other
+  learner_created: true
+- name: src/budget/Purchase.java
+  visible: true
+  text: |
+    package budget;
+
+    public class Purchase {
+        String name;
+        Double price;
+        String type;
+
+        Purchase() {
+        }
+
+        Purchase (String name, Double price, String type) {
+            this.name = name;
+            this.price = price;
+            this.type = type;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/76/stages/425/implement#comment
 status: Unchecked
 record: -1

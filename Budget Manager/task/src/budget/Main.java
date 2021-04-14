@@ -225,7 +225,7 @@ public class Main {
                             String[] next = fileScanner.nextLine().split("/");
                             purchases.add(new Purchase(next[0], Double.parseDouble(next[1]), next[2]));
                         }
-                        System.out.println("\nPurchases were loaded!");
+                        System.out.println("\nr Purchases were loaded!");
                     } catch (FileNotFoundException e) {
                         System.out.println("\nFile not found");
                     }
