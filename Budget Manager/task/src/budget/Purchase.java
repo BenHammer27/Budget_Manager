@@ -13,4 +13,5 @@ public class Purchase {
         this.price = price;
         this.type = type;
     }
+
 }

@@ -3,8 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.text.DecimalFormat;
 
 public class Main {
@@ -24,6 +23,7 @@ public class Main {
             System.out.println("4) Balance");
             System.out.println("5) Save");
             System.out.println("6) Load");
+            System.out.println("7) Analyze (Sort)");
             System.out.println("0) Exit");
 
             int choice = scanner.nextInt();
@@ -225,10 +225,174 @@ public class Main {
                             String[] next = fileScanner.nextLine().split("/");
                             purchases.add(new Purchase(next[0], Double.parseDouble(next[1]), next[2]));
                         }
-                        System.out.println("\nr Purchases were loaded!");
+                        System.out.println("\nPurchases were loaded!");
                     } catch (FileNotFoundException e) {
                         System.out.println("\nFile not found");
                     }
+                    break;
+                case 7:
+                    boolean backAnalyze = false;
+                    while(!backAnalyze) {
+                        System.out.println("\nHow do you want to sort?");
+                        System.out.println("1) Sort all purchases");
+                        System.out.println("2) Sort by type");
+                        System.out.println("3) Sort certain type");
+                        System.out.println("4) Back");
+                        int typeChoice = scanner.nextInt();
+
+                        List<Purchase> Food = new ArrayList<>();
+                        List<Purchase> Clothes = new ArrayList<>();
+                        List<Purchase> Entertainment = new ArrayList<>();
+                        List<Purchase> Other = new ArrayList<>();
+                        Map<String, Double> totals = new TreeMap<>();
+                        Double totalFood = 0.0;
+                        Double totalClothes = 0.0;
+                        Double totalEntertainment = 0.0;
+                        Double totalOther = 0.0;
+
+                        for (int i = 0; i < purchases.size(); i++) {
+                            if (purchases.get(i).type.equals("Food")) {
+                                Food.add(purchases.get(i));
+                                totalFood += purchases.get(i).price;
+                            } else if (purchases.get(i).type.equals("Clothes")) {
+                                Clothes.add(purchases.get(i));
+                                totalClothes += purchases.get(i).price;
+                            } else if (purchases.get(i).type.equals("Entertainment")) {
+                                Entertainment.add(purchases.get(i));
+                                totalEntertainment += purchases.get(i).price;
+                            } else if (purchases.get(i).type.equals("Other")) {
+                                Other.add(purchases.get(i));
+                                totalOther += purchases.get(i).price;
+                            }
+                        }
+
+                        totals.put("Food", totalFood);
+                        totals.put("Clothes", totalClothes);
+                        totals.put("Entertainment", totalEntertainment);
+                        totals.put("Other",totalOther);
+
+
+                        switch (typeChoice) {
+                            case 1:
+                                if (purchases.isEmpty()) {
+                                    System.out.println("\nThe purchase list is empty!");
+                                } else {
+                                    Collections.sort(purchases, new Comparator<Purchase>() {
+                                        @Override
+                                        public int compare(Purchase purchase, Purchase t1) {
+                                            return t1.price.compareTo(purchase.price);
+                                        }
+                                    });
+                                    System.out.println("\n All:");
+                                    for (int i = 0; i < purchases.size(); i++) {
+                                        System.out.println(purchases.get(i).name + " $" + format.format(purchases.get(i).price));
+                                    }
+                                    System.out.println("Total sum: $" + format.format(totals.get("Food") + totals.get("Clothes") + totals.get("Entertainment") + totals.get("Other")));
+                                }
+                                break;
+                            case 2:
+                                Double[] sortedTotals = {totals.get("Food"), totals.get("Clothes"), totals.get("Entertainment"), totals.get("Other")};
+                                Arrays.sort(sortedTotals);
+                                System.out.println("\n");
+                                for (int i = sortedTotals.length - 1; i >= 0; i--) {
+                                    if (sortedTotals[i] == totals.get("Food")) {
+                                        System.out.println("Food - $" +format.format(sortedTotals[i]));
+                                    } else if (sortedTotals[i] == totals.get("Clothes")) {
+                                        System.out.println("Clothes - $" +format.format(sortedTotals[i]));
+                                    } else if (sortedTotals[i] == totals.get("Entertainment")) {
+                                        System.out.println("Entertainment - $" +format.format(sortedTotals[i]));
+                                    } else if (sortedTotals[i] == totals.get("Other")) {
+                                        System.out.println("Other - $" +format.format(sortedTotals[i]));
+                                    }
+                                }
+                                System.out.println("Total sum: $" + format.format(totals.get("Food") + totals.get("Clothes") + totals.get("Entertainment") + totals.get("Other")));
+                                break;
+                            case 3:
+                                System.out.println("\nChose the type of purchase");
+                                System.out.println("1) Food");
+                                System.out.println("2) Clothes");
+                                System.out.println("3) Entertainment");
+                                System.out.println("4) Other");
+
+                                int sortChoice = scanner.nextInt();
+
+                                switch (sortChoice) {
+                                    case 1:
+                                        if (Food.isEmpty()) {
+                                            System.out.println("\nThe purchase list is empty!");
+                                        } else {
+                                            System.out.println("\nFood:");
+                                            Collections.sort(Food, new Comparator<Purchase>() {
+                                                @Override
+                                                public int compare(Purchase purchase, Purchase t1) {
+                                                    return t1.price.compareTo(purchase.price);
+                                                }
+                                            });
+                                            for (int i = 0; i < Food.size(); i++) {
+                                                System.out.println(Food.get(i).name + " $" + format.format(Food.get(i).price));
+                                            }
+                                            System.out.println("Total sum: $" + format.format(totals.get("Food")));
+                                        }
+                                        break;
+                                    case 2:
+                                        if (Clothes.isEmpty()) {
+                                            System.out.println("\nThe purchase list is empty!");
+                                        } else {
+                                            System.out.println("\nClothes:");
+                                            Collections.sort(Clothes, new Comparator<Purchase>() {
+                                                @Override
+                                                public int compare(Purchase purchase, Purchase t1) {
+                                                    return t1.price.compareTo(purchase.price);
+                                                }
+                                            });
+                                            for (int i = 0; i < Clothes.size(); i++) {
+                                                System.out.println(Clothes.get(i).name + " $" + format.format(Clothes.get(i).price));
+                                            }
+                                            System.out.println("Total sum: $" + format.format(totals.get("Clothes")));
+                                        }
+                                        break;
+                                    case 3:
+                                        if (Entertainment.isEmpty()) {
+                                            System.out.println("\nThe purchase list is empty!");
+                                        } else {
+                                            System.out.println("\nEntertainment:");
+                                            Collections.sort(Entertainment, new Comparator<Purchase>() {
+                                                @Override
+                                                public int compare(Purchase purchase, Purchase t1) {
+                                                    return t1.price.compareTo(purchase.price);
+                                                }
+                                            });
+                                            for (int i = 0; i < Entertainment.size(); i++) {
+                                                System.out.println(Entertainment.get(i).name + " $" + format.format(Entertainment.get(i).price));
+                                            }
+                                            System.out.println("Total sum: $" + format.format(totals.get("Clothes")));
+                                        }
+                                        break;
+                                    case 4:
+                                        if (Other.isEmpty()) {
+                                            System.out.println("\nThe purchase list is empty!");
+                                        } else {
+                                            System.out.println("\nOther:");
+                                            Collections.sort(Other, new Comparator<Purchase>() {
+                                                @Override
+                                                public int compare(Purchase purchase, Purchase t1) {
+                                                    return t1.price.compareTo(purchase.price);
+                                                }
+                                            });
+                                            for (int i = 0; i < Other.size(); i++) {
+                                                System.out.println(Other.get(i).name + " $" + format.format(Other.get(i).price));
+                                            }
+                                            System.out.println("Total sum: $" + format.format(totals.get("Other")));
+                                        }
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                backAnalyze = true;
+                                break;
+                        }
+                    }
+
             }
         } while (!exit);
 
@@ -246,5 +410,21 @@ public class Main {
         System.out.println("Total: $" + balance);
 
         */
+    }
+    public static <K, V extends Comparable<V>> Map<K, V> sortByValues(final Map<K, V> map) {
+        Comparator<K> valueComparator = new Comparator<K>() {
+                    public int compare(K k1, K k2) {
+                        int compare =
+                                map.get(k2).compareTo(map.get(k1));
+                        if (compare == 0)
+                            return 1;
+                        else
+                            return compare;
+                    }
+                };
+
+        Map<K, V> sortedByValues = new TreeMap<K, V>(valueComparator);
+        sortedByValues.putAll(map);
+        return sortedByValues;
     }
 }
